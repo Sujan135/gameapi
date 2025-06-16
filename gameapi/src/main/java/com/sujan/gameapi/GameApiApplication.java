@@ -4,11 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GameapiApplication {
+public class GameApiApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(GameapiApplication.class, args);
+		SpringApplication.run(GameApiApplication.class, args);
 	}
 
 }
