@@ -15,6 +15,11 @@ public class GameController {
     @Autowired
     private GameRepository gameRepository;
 
+    @GetMapping
+    public List<Game> getAllGames() {
+        return gameRepository.findAll();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Game> getGameById(@PathVariable Long id) {
         return gameRepository.findById(id)
