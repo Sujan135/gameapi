@@ -1,5 +1,6 @@
 package com.sujan.gameapi.controller;
 
+import com.sujan.gameapi.dto.SearchRequest;
 import com.sujan.gameapi.model.Game;
 import com.sujan.gameapi.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,11 @@ public class GameController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @PostMapping("/search")
+    public List<Game> searchGames(@RequestBody SearchRequest searchRequest){
+        String title = searchRequest.getTitle() != null ? searchRequest.getTitle() : "";
+        String genre = searchRequest.getGenre() != null ? searchRequest.getGenre() : "";
+        return gameRepository.findByTitleContainingIgnoreCaseOrGenreContainingIgnoreCase(title, genre);
+    }
 
 }
