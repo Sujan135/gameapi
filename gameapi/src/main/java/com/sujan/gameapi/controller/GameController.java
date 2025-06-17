@@ -57,9 +57,17 @@ public class GameController {
     }
 
     @PostMapping("/search")
-    public List<Game> searchGames(@RequestBody SearchRequest searchRequest){
-        String title = searchRequest.getTitle() != null ? searchRequest.getTitle() : "";
-        String genre = searchRequest.getGenre() != null ? searchRequest.getGenre() : "";
-        return gameRepository.findByTitleContainingIgnoreCaseOrGenreContainingIgnoreCase(title, genre);
+    public List<Game> searchGames(@RequestBody SearchRequest searchRequest) {
+        String title = searchRequest.getTitle();
+        String genre = searchRequest.getGenre();
+
+        if ((title == null || title.isBlank()) && (genre == null || genre.isBlank())) {
+            return gameRepository.findAll();
+        }
+        return gameRepository.findByTitleContainingIgnoreCaseOrGenreContainingIgnoreCase(
+                title != null ? title : "",
+                genre != null ? genre : ""
+        );
     }
+
 }
