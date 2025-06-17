@@ -62,5 +62,4 @@ public class GameController {
         String genre = searchRequest.getGenre() != null ? searchRequest.getGenre() : "";
         return gameRepository.findByTitleContainingIgnoreCaseOrGenreContainingIgnoreCase(title, genre);
     }
-
 }
